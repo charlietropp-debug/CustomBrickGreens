@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CustomBrick Greens | Custom LEGO models of your course, clubhouse or home</title>
+<meta name="description" content="Custom LEGO models of your club's clubhouse or signature hole. Genuine LEGO, instruction PDF included, free mock-up first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="deal"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#" id="brand">CustomBrick Greens</a>
+    <a class="btn" href="#order">Order</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <h1>Your course, built in brick.</h1>
+      <p>We build custom LEGO models of the places that matter to you, from a signature golf hole to the house you grew up in. You get the pieces and a step-by-step instruction PDF, and you build it.</p>
+      <div class="row">
+        <a class="btn" href="#order">Order your model</a>
+        <a class="btn line" href="#work">See our builds</a>
+      </div>
+      <div class="checks"><span>100% genuine LEGO</span><span>Free mock-up first</span><span>PDF instructions</span></div>
+    </div>
+    <img src="images/pebble-7th-hero.jpg" alt="LEGO model of a coastal golf hole with bunkers, cliffs and ocean">
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <h2>See what we build.</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="golf">Golf</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="homes">Homes &amp; buildings</button>
+    </div>
+
+    <div class="panel on" id="p-golf">
+      <h3>Holes and clubhouses, rebuilt brick by brick</h3>
+      <p class="lead">Bunker edges, the break of a bluff, the water below. We study photos of your hole and shape it in brick. Clubhouses get their rooflines, dormers and porches.</p>
+      <div class="pair two">
+        <figure><figcaption>Our model</figcaption><img src="images/pebble-7th-model.jpg" alt="Our LEGO model of the 7th hole at Pebble Beach"></figure>
+        <figure><figcaption>The real 7th at Pebble Beach</figcaption><img src="images/pebble-7th-real.jpg" alt="The real 7th hole at Pebble Beach"></figure>
+      </div>
+      <h4 class="sub2">Clubhouses</h4>
+      <div class="pair stack">
+        <figure><figcaption>Our model</figcaption><img src="images/shinnecock-clubhouse-model.jpg" alt="Our LEGO model of the Shinnecock Hills clubhouse"></figure>
+        <figure><figcaption>The real clubhouse (Shinnecock Hills)</figcaption><img src="images/shinnecock-clubhouse-real.jpg" alt="The real Shinnecock Hills clubhouse"></figure>
+      </div>
+      <div class="g2">
+        <img src="images/clubhouse-model-1.jpg" alt="LEGO clubhouse model, angled view">
+        <img src="images/clubhouse-model-closeup.jpg" alt="LEGO clubhouse model close-up of dormers and porch">
+      </div>
+      <h4 class="sub2">Built in real life</h4>
+      <div class="g3">
+        <img src="images/golf-1.jpg" alt="The finished golf hole model, overhead view">
+        <img src="images/golf-2.jpg" alt="The finished golf hole model, low angle over the cliffs and water">
+        <img src="images/golf-3.jpg" alt="The finished golf hole model, looking over the green and bunkers">
+      </div>
+      <p class="cap">The same hole, built and photographed at home.</p>
+    </div>
+
+    <div class="panel" id="p-homes">
+      <h3>The house, down to the shutters</h3>
+      <p class="lead">Send photos of any real building: a family home, a lake house, an office. We match the roofline, the windows, the steps and the driveway.</p>
+      <img class="wide" src="images/home-colonial-compare.jpg" alt="A real house on the left blending into our LEGO model of it on the right">
+      <p class="cap">Real house on the left, our LEGO model on the right.</p>
+      <div class="g2" style="margin-top:14px">
+        <img src="images/house-render-1.jpg" alt="Design of a LEGO house" style="aspect-ratio:1/1">
+        <img src="images/house-render-2.jpg" alt="Design of a LEGO house, front view" style="aspect-ratio:1/1">
+      </div>
+      <div class="pair" style="margin-top:12px"><figure><figcaption>Design vs. the real building</figcaption><img src="images/building-render-vs-real.jpg" alt="LEGO design of a brick building next to the real building" style="background:#fff"></figure></div>
+      <h4 class="sub2">Built in real life</h4>
+      <div class="g3">
+        <img src="images/home-build-1.jpg" alt="Finished LEGO house model on a green baseplate">
+        <img src="images/home-build-2.jpg" alt="LEGO house model from the driveway side">
+        <img src="images/home-shingle-model.jpg" alt="Close-up of a LEGO house model with garage, stairs and railings" style="object-position:center 30%">
+      </div>
+      <p class="cap">Stairs, railings, garage doors, even the driveway.</p>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <h2>Pick your size and pay.</h2>
+    <p class="sub">Every model ships as genuine LEGO pieces. We email you the instructions as a PDF.</p>
+    <div class="order">
+      <div>
+        <div class="opts" id="opts"></div>
+        <div class="bundle" id="bundleNote"></div>
+      </div>
+      <div class="sum" id="cartPanel">
+        <div class="lbl">Your cart</div>
+        <p class="empty" id="empty">Nothing yet. Add a model to start.</p>
+        <ul class="items" id="items"></ul>
+        <div id="lines"></div>
+        <div class="cl" style="margin-top:10px;align-items:baseline"><span>Total</span><span class="tot" id="sTot" style="margin:0">$0</span></div>
+        <div class="nudge" id="nudge"></div>
+        <a class="btn off" id="payBtn" href="#">Add a model</a>
+        <ul class="perks">
+          <li>Genuine LEGO pieces</li>
+          <li>Instructions sent to you as a PDF</li>
+          <li>Free mock-up before we build</li>
+        </ul>
+        <p class="invoice" id="invoice" style="display:none">Already have a quote from us? <a id="invLink" href="#">Pay your invoice</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><b>Send photos</b><span>Front, back, left, right. A 360 video helps.</span></li>
+      <li><b>See a mock-up</b><span>Free, before you commit.</span></li>
+      <li><b>We ship it</b><span>Bricks to you, instruction PDF to your inbox.</span></li>
+      <li><b>You build it</b><span>A great project for your team.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap faq">
+    <h2 style="margin-bottom:10px">Questions</h2>
+    <details><summary>Is it real LEGO?</summary><p>Yes. All of our bricks are real, genuine LEGO.</p></details>
+    <details><summary>Can we see it before we pay?</summary><p>Yes. Send us photos of the building and we'll put together a mock-up so you know what the model will look like.</p></details>
+    <details><summary>What do we receive?</summary><p>The pieces, shipped to you, and a step-by-step instruction PDF sent to your email. Your team builds it. We're happy to send a sample instruction PDF first.</p></details>
+    <details><summary>Is the price flexible?</summary><p>Somewhat. If you have a budget or want more than one building, just ask and we'll work with you.</p></details>
+    <details><summary>What photos do you need?</summary><p>The building from the front, back, left and right, plus any other angles you like. A 360 video walking around the outside is great too.</p></details>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Ready to see your club in brick?</h2>
+    <p>Questions first? Email Nate &amp; Charlie and we'll reply fast.</p>
+    <a class="btn" id="mailBtn" href="#">Email us</a>
+  </div>
+</section>
+
+<footer class="wrap">&copy; <span id="yr"></span> CustomBrick Greens &middot; LEGO&reg; is a trademark of the LEGO Group, which does not sponsor or endorse this site.</footer>
+
+<div id="lb"><img alt=""></div>
+<div id="mbar"><span id="mTxt"></span><a class="btn" href="#cartPanel">View cart</a></div>
+<script src="config.js"></script>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var money=function(n){return "$"+n.toLocaleString("en-US")};
+  $("#yr").textContent=new Date().getFullYear();
+  $("#brand").textContent=CONFIG.brand;
+  if(CONFIG.deal&&CONFIG.deal.enabled){var d=$("#deal");d.textContent=CONFIG.deal.text;d.style.display="block"}
+
+  var mail=function(subject,body){
+    return "mailto:"+CONFIG.email+"?cc="+encodeURIComponent(CONFIG.emailCc)+"&subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body||"");
+  };
+  $("#mailBtn").href=mail("Question about a model","Hi Nate & Charlie,\n\n");
+  if(CONFIG.invoiceLink){$("#invoice").style.display="block";$("#invLink").href=CONFIG.invoiceLink}
+
+  var cart=[];
+  try{cart=JSON.parse(localStorage.getItem('bbgm_cart')||'[]').filter(function(i){return CONFIG.sizes[i]})}catch(e){cart=[]}
+  var opts=$("#opts");
+  opts.innerHTML=CONFIG.sizes.map(function(s,i){
+    var p=s.salePrice?'<s>'+money(s.price)+'</s>'+money(s.salePrice):money(s.price);
+    return '<div class="opt"><span><b>'+s.name+(s.popular?'<span class="tag">Most popular</span>':'')+'</b><small>About '+s.pieces.toLocaleString()+' pieces &middot; '+s.note+'</small></span><span class="p">'+p+'</span><button class="add" data-add="'+i+'">Add</button></div>';
+  }).join("");
+
+  var B=CONFIG.bundle||{enabled:false};
+  $("#bundleNote").innerHTML=B.enabled?'<b>'+B.label+':</b> add '+B.minItems+' or more models to your cart and '+money(B.amountOff)+' comes off automatically. A clubhouse plus a locker room, for example.':'';
+  if(!B.enabled)$("#bundleNote").style.display="none";
+
+  function price(s){return s.salePrice||s.price}
+  function calc(){
+    var sub=0;cart.forEach(function(i){sub+=price(CONFIG.sizes[i])});
+    var off=(B.enabled&&cart.length>=B.minItems)?B.amountOff:0;
+    return {sub:sub,off:off,total:Math.max(sub-off,0)};
+  }
+  function render(){
+    var c=calc(),n=cart.length;
+    $("#empty").style.display=n?"none":"block";
+    $("#items").innerHTML=cart.map(function(i,k){
+      var s=CONFIG.sizes[i];
+      return '<li><span>'+s.name+' <small style="color:var(--mute)">('+s.pieces.toLocaleString()+' pcs)</small></span><span>'+money(price(s))+' <button class="x" data-rm="'+k+'" aria-label="Remove">&times;</button></span></li>';
+    }).join("");
+    $("#lines").innerHTML=c.off?'<div class="cl"><span>Subtotal</span><span>'+money(c.sub)+'</span></div><div class="cl off"><span>'+B.label+'</span><span>&minus;'+money(c.off)+'</span></div>':"";
+    $("#sTot").textContent=money(c.total);
+    $("#mTxt").innerHTML=n+" item"+(n>1?"s":"")+" &middot; <b>"+money(c.total)+"</b>";
+    $("#mbar").className=n?"show":"";
+    var nu=$("#nudge");
+    if(!B.enabled||!n){nu.style.display="none"}
+    else{nu.style.display="block";
+      if(c.off){nu.className="nudge on";nu.textContent="Deal applied: you save "+money(c.off)+"."}
+      else{nu.className="nudge";nu.textContent="Add one more model and save "+money(B.amountOff)+"."}
+    }
+    try{localStorage.setItem('bbgm_cart',JSON.stringify(cart))}catch(e){}
+    var b=$("#payBtn");
+    if(!n){b.className="btn off";b.textContent="Add a model";b.href="#";return}
+    b.className="btn";b.href="checkout.html";b.textContent="Checkout \u00b7 "+money(c.total);
+  }
+  document.addEventListener("click",function(e){
+    var t=e.target.closest("[data-tab]");
+    if(t){
+      document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-selected",x===t?"true":"false")});
+      document.querySelectorAll(".panel").forEach(function(p){p.classList.toggle("on",p.id==="p-"+t.getAttribute("data-tab"))});
+    }
+    var im=e.target.closest(".work img");
+    if(im){var lb=$("#lb");lb.firstElementChild.src=im.src;lb.style.display="flex"}
+    if(e.target.closest("#lb")){$("#lb").style.display="none"}
+  });
+  document.addEventListener("click",function(e){
+    var a=e.target.closest("[data-add]"),r=e.target.closest("[data-rm]");
+    if(a){cart.push(+a.getAttribute("data-add"));render()}
+    if(r){cart.splice(+r.getAttribute("data-rm"),1);render()}
+  });
+  render();
+})();
+</script>
+</body>
+</html>

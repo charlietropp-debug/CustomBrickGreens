@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout | CustomBrick Greens</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="index.html" id="brand">CustomBrick Greens</a>
+    <a class="btn line" href="index.html#order" style="padding:9px 18px;font-size:.92rem">Back to models</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- empty cart -->
+  <div class="done" id="emptyView" style="display:none">
+    <h1>Your cart is empty.</h1>
+    <p class="sub" style="margin:0 auto 22px">Pick a model size first.</p>
+    <a class="btn" href="index.html#order">Choose a model</a>
+  </div>
+
+  <!-- thank-you -->
+  <div class="done" id="doneView" style="display:none">
+    <h1>Thank you. Your order is in.</h1>
+    <p class="sub" style="margin:0 auto 10px" id="doneMsg"></p>
+    <p class="sub" style="margin:0 auto 22px">We'll email your instruction PDF and confirm everything.</p>
+    <a class="btn" href="index.html">Back to the site</a>
+  </div>
+
+  <div class="co" id="mainView" style="display:none">
+    <form class="form" id="orderForm">
+      <a class="back" href="index.html#order">&larr; Back</a>
+      <h1>Checkout</h1>
+      <p class="sub">Tell us where to send your model. We'll email you the order right away.</p>
+
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="r2">
+        <div><label for="name">Your name</label><input id="name" name="Name" required autocomplete="name"></div>
+        <div><label for="org">Club or organization (optional)</label><input id="org" name="Club / organization" autocomplete="organization"></div>
+      </div>
+      <div class="r2">
+        <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+        <div><label for="phone">Phone (optional)</label><input id="phone" name="Phone" type="tel" autocomplete="tel"></div>
+      </div>
+
+      <h2>Ship to</h2>
+      <label for="addr">Street address</label><input id="addr" name="Street" required autocomplete="street-address">
+      <div class="r3">
+        <div><label for="city">City</label><input id="city" name="City" required autocomplete="address-level2"></div>
+        <div><label for="state">State</label><input id="state" name="State" required autocomplete="address-level1"></div>
+        <div><label for="zip">ZIP</label><input id="zip" name="ZIP" required autocomplete="postal-code"></div>
+      </div>
+
+      <label for="notes">What are we building? Anything else? (optional)</label>
+      <textarea id="notes" name="Notes" rows="4" placeholder="e.g. our clubhouse, front view. Photos and a 360 video link are welcome."></textarea>
+
+      <div id="payChoice" style="display:none">
+        <h2>How would you like to pay?</h2>
+        <label class="pc"><input type="radio" name="paymethod" value="card" checked> <span><b>Pay by card now</b><small>Secure checkout with Stripe. Fastest.</small></span></label>
+        <label class="pc"><input type="radio" name="paymethod" value="invoice"> <span><b>Email me an invoice</b><small>We'll send an invoice you can pay when ready.</small></span></label>
+      </div>
+      <div class="err" id="err"></div>
+      <button class="btn" id="submitBtn" type="submit" style="width:100%;margin-top:22px"></button>
+      <p class="small" style="font-size:.85rem;color:var(--mute);margin-top:12px">Send photos of the building (front, back, left, right) by replying to our confirmation email.</p>
+    </form>
+
+    <aside class="box">
+      <div class="lbl" style="color:var(--mute);font-size:.88rem">Your order</div>
+      <ul class="items" id="items" style="margin-top:12px"></ul>
+      <div id="lines"></div>
+      <div class="cl" style="margin-top:10px;align-items:baseline"><span>Total</span><span class="tot" id="sTot" style="font-family:'Fraunces',serif;font-weight:600;font-size:2.2rem;line-height:1"></span></div>
+      <div class="paynote" id="payNote" style="display:none"></div>
+      <div class="pdf"><span>&#10003;</span><span><b>Instructions included.</b> We email you the step-by-step instructions as a PDF.</span></div>
+      <ul class="perks" style="list-style:none;padding:0;margin:14px 0 0;font-size:.92rem;color:var(--mute)">
+        <li>&#10003;&nbsp;Genuine LEGO pieces</li>
+        <li>&#10003;&nbsp;Free mock-up before we build</li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var money=function(n){return "$"+n.toLocaleString("en-US")};
+  $("#brand").textContent=CONFIG.brand;
+
+  var cart=[];
+  try{cart=JSON.parse(localStorage.getItem('bbgm_cart')||'[]').filter(function(i){return CONFIG.sizes[i]})}catch(e){}
+  if(!cart.length){$("#emptyView").style.display="block";return}
+  $("#mainView").style.display="grid";
+
+  var B=CONFIG.bundle||{enabled:false};
+  var price=function(s){return s.salePrice||s.price};
+  var sub=0;cart.forEach(function(i){sub+=price(CONFIG.sizes[i])});
+  var off=(B.enabled&&cart.length>=B.minItems)?B.amountOff:0;
+  var total=Math.max(sub-off,0);
+
+  $("#items").innerHTML=cart.map(function(i){var s=CONFIG.sizes[i];
+    return '<li><span>'+s.name+' <small style="color:var(--mute)">('+s.pieces.toLocaleString()+' pcs)</small></span><span>'+money(price(s))+'</span></li>'}).join("");
+  $("#lines").innerHTML=off?'<div class="cl"><span>Subtotal</span><span>'+money(sub)+'</span></div><div class="cl off"><span>'+B.label+'</span><span>&minus;'+money(off)+'</span></div>':"";
+  $("#sTot").textContent=money(total);
+
+  // Which Stripe link applies?
+  var link="",needsAmount=false;
+  if(cart.length===1&&!off&&CONFIG.sizes[cart[0]].paymentLink){link=CONFIG.sizes[cart[0]].paymentLink}
+  else if(off&&B.paymentLink){link=B.paymentLink;needsAmount=true}
+  else if(CONFIG.stripeLink){link=CONFIG.stripeLink;needsAmount=true}
+
+  var pay="card";
+  function setMode(){
+    var useLink=link&&pay==="card";
+    $("#submitBtn").textContent=useLink?"Continue to secure payment":(link?"Place order and send my invoice":"Place order");
+    var pn=$("#payNote");pn.style.display="block";
+    if(useLink&&needsAmount){pn.innerHTML='On the Stripe payment page, enter the amount <b>'+money(total)+'</b>.'}
+    else if(useLink){pn.innerHTML='You\'ll pay <b>'+money(total)+'</b> securely with Stripe.'}
+    else{pn.textContent="No payment needed right now. We'll email you an invoice for the total above."}
+  }
+  if(link){$("#payChoice").style.display="block"}
+  document.querySelectorAll('input[name="paymethod"]').forEach(function(r){r.addEventListener("change",function(){pay=r.value;setMode()})});
+  setMode();
+
+  var summary=cart.map(function(i){var s=CONFIG.sizes[i];return s.name+" (about "+s.pieces.toLocaleString()+" pieces): "+money(price(s))}).join("\n");
+  summary+=(off?"\n"+B.label+": -"+money(off):"")+"\nTOTAL: "+money(total);
+
+  function fail(fields){
+    var e=$("#err");
+    var body="Order:\n"+summary+"\n\n"+Object.keys(fields).map(function(k){return k+": "+fields[k]}).join("\n");
+    e.innerHTML="We couldn't send that automatically. Please <a href=\"mailto:"+CONFIG.email+"?cc="+encodeURIComponent(CONFIG.emailCc)+"&subject="+encodeURIComponent("New order")+"&body="+encodeURIComponent(body)+"\">email us your order</a> and we'll take it from there.";
+    e.style.display="block";
+    $("#submitBtn").disabled=false;$("#submitBtn").style.opacity="";
+  }
+
+  $("#orderForm").addEventListener("submit",function(ev){
+    ev.preventDefault();
+    var f=$("#orderForm"),btn=$("#submitBtn");
+    if(f.elements["_honey"].value)return;
+    btn.disabled=true;btn.style.opacity=".6";btn.textContent="Sending...";$("#err").style.display="none";
+    var fields={
+      "Name":f.elements["Name"].value,
+      "Club / organization":f.elements["Club / organization"].value,
+      "Email":f.elements["email"].value,
+      "Phone":f.elements["Phone"].value,
+      "Ship to":f.elements["Street"].value+", "+f.elements["City"].value+", "+f.elements["State"].value+" "+f.elements["ZIP"].value,
+      "Notes":f.elements["Notes"].value
+    };
+    var payload=Object.assign({},fields,{
+      "Order":summary,
+      "Total":money(total),
+      "Payment":(link&&pay==="card")?"Customer is paying by card (Stripe)":"SEND AN INVOICE",
+      "_subject":((link&&pay==="card")?"New order (card): ":"New order (INVOICE): ")+money(total)+" ("+cart.length+" model"+(cart.length>1?"s":"")+")",
+      "_cc":CONFIG.emailCc,
+      "_template":"table",
+      "_captcha":"false"
+    });
+    fetch("https://formsubmit.co/ajax/"+CONFIG.email,{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify(payload)
+    }).then(function(r){if(!r.ok)throw new Error("bad");return r.json()}).then(function(){
+      try{localStorage.removeItem('bbgm_cart')}catch(e){}
+      if(link&&pay==="card"){
+        var u=link+(link.indexOf("?")>-1?"&":"?")+"prefilled_email="+encodeURIComponent(fields["Email"]);
+        window.location.href=u;
+      }else{
+        $("#mainView").style.display="none";$("#doneView").style.display="block";
+        $("#doneMsg").textContent="We got your order for "+money(total)+" and will email "+fields["Email"]+" with your invoice.";
+        window.scrollTo(0,0);
+      }
+    }).catch(function(){fail(fields)});
+  });
+})();
+</script>
+</body>
+</html>
