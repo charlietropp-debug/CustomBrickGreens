@@ -18,7 +18,9 @@ const CONFIG = {
   stripeLink: "",   // <-- paste your Stripe Payment Link here (looks like https://buy.stripe.com/...)
 
   brand: "CustomBrick Greens",
-  email: "charlietropp@gmail.com",       // order emails go here
+  email: "charlietropp@gmail.com",
+  // Order form key from web3forms.com (free). Paste the access key they email you.
+  formKey: "",       // order emails go here
   emailCc: "nategoldsmith3@gmail.com",
 
   // Top banner for special deals. Set enabled to false to hide it.
