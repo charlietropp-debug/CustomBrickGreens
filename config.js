@@ -28,6 +28,12 @@ const CONFIG = {
   // (In Stripe, create a Payment Link and turn on "Let customers choose what to pay".)
   invoiceLink: "",
 
+  // CUSTOMER REVIEWS (shown near the bottom of the page). Only add real reviews.
+  // To add one, copy a line, change the text and who. stars is 1 to 5.
+  reviews: [
+    { stars: 5, who: "Etsy customer", text: "This was absolutely incredible. This is not easy. He took the pictures I sent him and designed a nearly flawless set of LEGO directions as well as every piece I needed to build it. For any LEGO experts out there you know that quality directions are really important for any build. This was as good as what you would get with any set and the outcome was stunning. I would 10/10 do this again!" }
+  ],
+
   // MULTI-BUILDING DEAL: applies automatically when the cart has minItems or more models.
   // amountOff is in dollars (you said $100-$200, so pick any number in that range).
   // paymentLink = a Stripe Payment Link with "Let customers choose what to pay" turned on.
