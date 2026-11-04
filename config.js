@@ -20,7 +20,7 @@ const CONFIG = {
   brand: "CustomBrick Greens",
   email: "charlietropp@gmail.com",
   // Order form key from web3forms.com (free). Paste the access key they email you.
-  formKey: "",       // order emails go here
+  formKey: "069b8100-7421-4a76-ab0f-4ce236fcc754",       // order emails go here
   emailCc: "nategoldsmith3@gmail.com",
 
   // Top banner for special deals. Set enabled to false to hide it.
