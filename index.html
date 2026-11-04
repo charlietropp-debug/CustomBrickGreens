@@ -140,6 +140,13 @@
   </div>
 </section>
 
+<section id="reviews" style="padding-top:0;display:none">
+  <div class="wrap">
+    <h2>What customers say</h2>
+    <div id="revs" style="display:grid;gap:14px"></div>
+  </div>
+</section>
+
 <section class="cta">
   <div class="wrap">
     <h2>Ready to see your club in brick?</h2>
@@ -223,6 +230,16 @@
     if(r){cart.splice(+r.getAttribute("data-rm"),1);render()}
   });
   render();
+  (function(){
+    var R=CONFIG.reviews||[];if(!R.length)return;
+    var esc=function(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")};
+    $("#revs").innerHTML=R.map(function(r){
+      return '<figure style="margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px">'+
+        '<div aria-label="'+r.stars+' out of 5 stars" style="color:var(--gold);letter-spacing:2px;font-size:20px">'+"\u2605".repeat(r.stars)+"\u2606".repeat(5-r.stars)+'</div>'+
+        '<blockquote style="margin:10px 0 12px;font-size:17px;line-height:1.55">'+esc(r.text)+'</blockquote>'+
+        '<figcaption style="color:var(--mute);font-size:14px">'+esc(r.who||"Customer")+'</figcaption></figure>'}).join("");
+    $("#reviews").style.display="block";
+  })();
 })();
 </script>
 </body>
