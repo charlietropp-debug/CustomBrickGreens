@@ -93,6 +93,7 @@
   var $=function(s){return document.querySelector(s)};
   var money=function(n){return "$"+n.toLocaleString("en-US")};
   $("#brand").textContent=CONFIG.brand;
+  if(location.search.indexOf("sent=1")>-1){$("#doneView").style.display="block";$("#doneMsg").textContent="We got your order and will email you shortly with your invoice and next steps.";return}
 
   var cart=[];
   try{cart=JSON.parse(localStorage.getItem('bbgm_cart')||'[]').filter(function(i){return CONFIG.sizes[i]})}catch(e){}
@@ -178,7 +179,16 @@
         $("#doneMsg").textContent="We got your order for "+money(total)+" and will email "+fields["Email"]+" with your invoice.";
         window.scrollTo(0,0);
       }
-    }).catch(function(e){fail(fields,e&&e.message)});
+    }).catch(function(e){
+      if(e&&e.name==="TypeError"){
+        try{localStorage.removeItem('bbgm_cart')}catch(x){}
+        var nx=(link&&pay==="card")?link+(link.indexOf("?")>-1?"&":"?")+"prefilled_email="+encodeURIComponent(fields["Email"]):location.href.split("?")[0]+"?sent=1";
+        var fm=document.createElement("form");fm.method="POST";fm.action="https://formsubmit.co/"+CONFIG.email;
+        Object.keys(payload).forEach(function(k){var i=document.createElement("input");i.type="hidden";i.name=k;i.value=payload[k];fm.appendChild(i)});
+        var n=document.createElement("input");n.type="hidden";n.name="_next";n.value=nx;fm.appendChild(n);
+        document.body.appendChild(fm);fm.submit();
+      }else{fail(fields,e&&e.message)}
+    });
   });
 })();
 </script>
