@@ -132,12 +132,14 @@
   var summary=cart.map(function(i){var s=CONFIG.sizes[i];return s.name+" (about "+s.pieces.toLocaleString()+" pieces): "+money(price(s))}).join("\n");
   summary+=(off?"\n"+B.label+": -"+money(off):"")+"\nTOTAL: "+money(total);
 
-  function fail(fields){
+  var btnLabel=$("#submitBtn").textContent;
+  function fail(fields,why){
     var e=$("#err");
     var body="Order:\n"+summary+"\n\n"+Object.keys(fields).map(function(k){return k+": "+fields[k]}).join("\n");
     e.innerHTML="We couldn't send that automatically. Please <a href=\"mailto:"+CONFIG.email+"?cc="+encodeURIComponent(CONFIG.emailCc)+"&subject="+encodeURIComponent("New order")+"&body="+encodeURIComponent(body)+"\">email us your order</a> and we'll take it from there.";
     e.style.display="block";
-    $("#submitBtn").disabled=false;$("#submitBtn").style.opacity="";
+    $("#submitBtn").disabled=false;$("#submitBtn").style.opacity="";$("#submitBtn").textContent=btnLabel;
+    if(why){e.innerHTML+='<br><small style="opacity:.7">('+String(why).replace(/</g,"&lt;")+')</small>'}
   }
 
   $("#orderForm").addEventListener("submit",function(ev){
@@ -166,7 +168,7 @@
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body:JSON.stringify(payload)
-    }).then(function(r){if(!r.ok)throw new Error("bad");return r.json()}).then(function(){
+    }).then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok||d.success==="false"||d.success===false)throw new Error(d.message||("error "+r.status));return d})}).then(function(){
       try{localStorage.removeItem('bbgm_cart')}catch(e){}
       if(link&&pay==="card"){
         var u=link+(link.indexOf("?")>-1?"&":"?")+"prefilled_email="+encodeURIComponent(fields["Email"]);
@@ -176,7 +178,7 @@
         $("#doneMsg").textContent="We got your order for "+money(total)+" and will email "+fields["Email"]+" with your invoice.";
         window.scrollTo(0,0);
       }
-    }).catch(function(){fail(fields)});
+    }).catch(function(e){fail(fields,e&&e.message)});
   });
 })();
 </script>
