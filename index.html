@@ -145,6 +145,14 @@
     <div class="order">
       <div>
         <div class="opts" id="opts"></div>
+        <div id="customBox" style="display:none;margin-top:12px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fff">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap"><b>Custom size</b><span style="color:var(--mute);font-size:14px">Slide to pick your own piece count</span></div>
+          <input type="range" id="cRange" aria-label="Custom piece count" style="width:100%;margin:14px 0 6px">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+            <span>About <b id="cPcs"></b> pieces &middot; <b id="cPrice"></b></span>
+            <button class="add" id="cAdd" data-add="0" type="button">Add</button>
+          </div>
+        </div>
         <noscript><p class="sub">Models start at $700 with a 4 to 6 week turnaround. <a href="#quote">Request a quote</a> or email custombrickgreens@gmail.com.</p></noscript>
         <div class="bundle" id="bundleNote"></div>
       </div>
@@ -226,6 +234,7 @@
   try{cart=JSON.parse(localStorage.getItem('bbgm_cart')||'[]').filter(function(i){return CONFIG.sizes[i]})}catch(e){cart=[]}
   var opts=$("#opts");
   opts.innerHTML=CONFIG.sizes.map(function(s,i){
+    if(s.custom)return "";
     var p=s.salePrice?'<s>'+money(s.price)+'</s>'+money(s.salePrice):money(s.price);
     return '<div class="opt"><span><b>'+s.name+(s.popular?'<span class="tag">Most popular</span>':'')+'</b><small>About '+s.pieces.toLocaleString()+' pieces &middot; '+s.note+'</small></span><span class="p">'+p+'</span><button class="add" data-add="'+i+'">Add</button></div>';
   }).join("");
@@ -289,6 +298,16 @@
     $("#reviews .wrap").insertAdjacentHTML("afterbegin","<h2>What customers say</h2>");
     $("#reviews").style.display="block";
   })();
+})();
+</script>
+<script>
+(function(){
+  var box=document.getElementById("customBox");if(!box||!CONFIG.addCustom)return;
+  var r=document.getElementById("cRange"),c=CONFIG.custom;
+  r.min=c.min;r.max=c.max;r.step=c.step;r.value=6000;
+  function show(){var p=+r.value;document.getElementById("cPcs").textContent=p.toLocaleString("en-US");document.getElementById("cPrice").textContent="$"+CONFIG.customPrice(p).toLocaleString("en-US")}
+  r.addEventListener("input",show);show();box.style.display="block";
+  document.getElementById("cAdd").addEventListener("click",function(){this.setAttribute("data-add",CONFIG.addCustom(+r.value))});
 })();
 </script>
 <script>
