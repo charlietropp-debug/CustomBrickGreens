@@ -33,8 +33,10 @@ const CONFIG = {
   // CUSTOMER REVIEWS (shown near the bottom of the page). Only add real reviews.
   // To add one, copy a line, change the text and who. stars is 1 to 5.
   reviews: [
-    { stars: 5, who: "Etsy customer", text: "This was absolutely incredible. This is not easy. He took the pictures I sent him and designed a nearly flawless set of LEGO directions as well as every piece I needed to build it. For any LEGO experts out there you know that quality directions are really important for any build. This was as good as what you would get with any set and the outcome was stunning. I would 10/10 do this again!" }
-  ],
+    { stars: 5, who: "Etsy customer", text: "This was absolutely incredible. This is not easy. He took the pictures I sent him and designed a nearly flawless set of LEGO directions as well as every piece I needed to build it. For any LEGO experts out there you know that quality directions are really important for any build. This was as good as what you would get with any set and the outcome was stunning. I would 10/10 do this again!" },
+    { stars: 5, who: "Etsy customer", text: "Such a unique and creative product! The level of detail is impressive, and the final build exceeded my expectations. Everything was well organized, and the instructions made assembly enjoyable." },
+    { stars: 5, who: "Etsy customer", text: "Great experience from start to finish. The custom design captured so many little details, and the finished LEGO model looks fantastic. You can really see the attention to detail behind the work." },
+    ],
 
   // MULTI-BUILDING DEAL: applies automatically when the cart has minItems or more models.
   // amountOff is in dollars (you said $100-$200, so pick any number in that range).
