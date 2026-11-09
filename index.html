@@ -28,8 +28,9 @@
       <div class="row">
         <a class="btn" href="#order">Order your model</a>
         <a class="btn line" href="#work">See our builds</a>
+        <a class="btn line" href="#quote">Request a quote</a>
       </div>
-      <div class="checks"><span>100% genuine LEGO</span><span>Free mock-up first</span><span>PDF instructions</span></div>
+      <div class="checks"><span>100% genuine LEGO</span><span>From $700 per model</span><span>Free mock-up first</span><span>PDF instructions</span></div>
     </div>
     <img src="pebble-7th-hero.jpg" alt="LEGO model of a coastal golf hole with bunkers, cliffs and ocean">
   </div>
@@ -47,14 +48,15 @@
       <h3>Holes and clubhouses, rebuilt brick by brick</h3>
       <p class="lead">Bunker edges, the break of a bluff, the water below. We study photos of your hole and shape it in brick. Clubhouses get their rooflines, dormers and porches.</p>
       <div class="pair two">
-        <figure><figcaption>Our model</figcaption><img src="pebble-7th-model.jpg" alt="Our LEGO model of the 7th hole at Pebble Beach"></figure>
+        <figure><figcaption>Sample build: our model</figcaption><img src="pebble-7th-model.jpg" alt="Our LEGO model of the 7th hole at Pebble Beach"></figure>
         <figure><figcaption>The real 7th at Pebble Beach</figcaption><img src="pebble-7th-real.jpg" alt="The real 7th hole at Pebble Beach"></figure>
       </div>
       <h4 class="sub2">Clubhouses</h4>
       <div class="pair stack">
-        <figure><figcaption>Our model</figcaption><img src="shinnecock-clubhouse-model.jpg" alt="Our LEGO model of the Shinnecock Hills clubhouse"></figure>
+        <figure><figcaption>Sample build: our model</figcaption><img src="shinnecock-clubhouse-model.jpg" alt="Our LEGO model of the Shinnecock Hills clubhouse"></figure>
         <figure><figcaption>The real clubhouse (Shinnecock Hills)</figcaption><img src="shinnecock-clubhouse-real.jpg" alt="The real Shinnecock Hills clubhouse"></figure>
       </div>
+      <p class="cap">Pebble Beach and Shinnecock Hills are sample builds made from public photos. They are examples of our work, not clients.</p>
       <div class="g2">
         <img src="clubhouse-model-1.jpg" alt="LEGO clubhouse model, angled view">
         <img src="clubhouse-model-closeup.jpg" alt="LEGO clubhouse model close-up of dormers and porch">
@@ -82,7 +84,7 @@
         <img src="house-render-2.jpg" alt="Design of a LEGO house, front view" style="aspect-ratio:1/1">
       </div>
       <div class="pair" style="margin-top:12px"><figure><figcaption>Design vs. the real building</figcaption><img src="building-render-vs-real.jpg" alt="LEGO design of a brick building next to the real building" style="background:#fff"></figure></div>
-      <h4 class="sub2">Built in real life</h4>
+      <h4 class="sub2">Finished builds</h4>
       <div class="g3">
         <img src="home-build-1.jpg" alt="Finished LEGO house model on a green baseplate">
         <img src="home-build-2.jpg" alt="LEGO house model from the driveway side">
@@ -93,6 +95,48 @@
   </div>
 </section>
 
+<section id="pros" style="padding-top:0">
+  <div class="wrap">
+    <h2>For builders and realtors.</h2>
+    <p class="sub">A custom LEGO model of a home or development makes a memorable sales-center display, closing or move-in gift, or a bulk order for a whole community. Models start at $700, and you see a free mock-up before we build.</p>
+    <ul class="perks">
+      <li>Sales-center display models</li>
+      <li>Closing and move-in gifts</li>
+      <li>Bulk orders: ask for pricing</li>
+    </ul>
+  </div>
+</section>
+
+<section id="quote" style="padding-top:0">
+  <style>
+    #quoteForm{max-width:640px;display:grid;gap:12px}
+    #quoteForm .qr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:560px){#quoteForm .qr{grid-template-columns:1fr}}
+    #quoteForm label{display:block;font-size:14px;color:var(--mute);margin-bottom:4px}
+    #quoteForm input,#quoteForm select,#quoteForm textarea{width:100%;box-sizing:border-box;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+    #qMsg{margin:0;font-size:15px}
+  </style>
+  <div class="wrap">
+    <h2>Request a quote</h2>
+    <p class="sub">Tell us about the project and we'll reply with a quote and a free mock-up.</p>
+    <form id="quoteForm">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="qr">
+        <div><label for="qn">Your name</label><input id="qn" name="Name" required></div>
+        <div><label for="qc">Company</label><input id="qc" name="Company"></div>
+      </div>
+      <div class="qr">
+        <div><label for="qe">Email</label><input id="qe" name="Email" type="email" required></div>
+        <div><label for="qu">What is it for?</label><select id="qu" name="Use"><option>Sales-center display</option><option>Closing or move-in gift</option><option>Bulk order</option><option>Other</option></select></div>
+      </div>
+      <div><label for="qp">Photos or a link</label><input id="qp" name="Photos or link" placeholder="Drive, Dropbox or listing link (or reply to our email with photos)"></div>
+      <div><label for="qd">Details</label><textarea id="qd" name="Details" rows="4" placeholder="Address or project name, how many models, timing"></textarea></div>
+      <button class="btn" type="submit" id="qBtn">Send request</button>
+      <p id="qMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+
 <section id="order">
   <div class="wrap">
     <h2>Pick your size and pay.</h2>
@@ -100,6 +144,7 @@
     <div class="order">
       <div>
         <div class="opts" id="opts"></div>
+        <noscript><p class="sub">Models start at $700. <a href="#quote">Request a quote</a> or email custombrickgreens@gmail.com.</p></noscript>
         <div class="bundle" id="bundleNote"></div>
       </div>
       <div class="sum" id="cartPanel">
@@ -146,16 +191,15 @@
 
 <section id="reviews" style="padding-top:0;display:none">
   <div class="wrap">
-    <h2>What customers say</h2>
     <div id="revs" style="display:grid;gap:14px"></div>
   </div>
 </section>
 
 <section class="cta">
   <div class="wrap">
-    <h2>Ready to see your club in brick?</h2>
-    <p>Questions first? Email Nate &amp; Charlie and we'll reply fast.</p>
-    <a class="btn" id="mailBtn" href="#">Email us</a>
+    <h2>Ready to see your property in brick?</h2>
+    <p>Questions first? Email Nate &amp; Charlie at custombrickgreens@gmail.com and we'll reply fast.</p>
+    <a class="btn" id="mailBtn" href="mailto:custombrickgreens@gmail.com?subject=Question%20about%20a%20model">Email us</a>
   </div>
 </section>
 
@@ -175,7 +219,6 @@
   var mail=function(subject,body){
     return "mailto:"+CONFIG.email+"?cc="+encodeURIComponent(CONFIG.emailCc)+"&subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body||"");
   };
-  $("#mailBtn").href=mail("Question about a model","Hi Nate & Charlie,\n\n");
   if(CONFIG.invoiceLink){$("#invoice").style.display="block";$("#invLink").href=CONFIG.invoiceLink}
 
   var cart=[];
@@ -242,8 +285,28 @@
         '<div aria-label="'+r.stars+' out of 5 stars" style="color:var(--gold);letter-spacing:2px;font-size:20px">'+"\u2605".repeat(r.stars)+"\u2606".repeat(5-r.stars)+'</div>'+
         '<blockquote style="margin:10px 0 12px;font-size:17px;line-height:1.55">'+esc(r.text)+'</blockquote>'+
         '<figcaption style="color:var(--mute);font-size:14px">'+esc(r.who||"Customer")+'</figcaption></figure>'}).join("");
+    $("#reviews .wrap").insertAdjacentHTML("afterbegin","<h2>What customers say</h2>");
     $("#reviews").style.display="block";
   })();
+})();
+</script>
+<script>
+(function(){
+  var f=document.getElementById("quoteForm");if(!f)return;
+  var b=document.getElementById("qBtn"),m=document.getElementById("qMsg"),MAIL="custombrickgreens@gmail.com";
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var fd=new FormData(f);if(fd.get("_honey"))return;fd.delete("_honey");
+    var o={access_key:CONFIG.formKey,from_name:"CustomBrick Greens quote request",subject:"Quote request: "+(fd.get("Company")||fd.get("Name"))};
+    fd.forEach(function(val,k){o[k]=val});
+    var fail=function(){m.innerHTML='We could not send that automatically. Please email <a href="mailto:'+MAIL+'">'+MAIL+'</a> instead.';b.disabled=false;b.textContent="Send request"};
+    b.disabled=true;b.textContent="Sending...";m.textContent="";
+    if(!CONFIG.formKey){fail();return}
+    fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(o)})
+      .then(function(r){return r.json()})
+      .then(function(d){if(d&&d.success===true){f.reset();b.disabled=false;b.textContent="Send request";m.textContent="Thanks. We got your request and will reply soon. Please check your spam or junk folder in case our reply lands there."}else fail()})
+      .catch(fail);
+  });
 })();
 </script>
 </body>
