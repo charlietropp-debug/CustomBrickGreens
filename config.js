@@ -63,11 +63,11 @@ const CONFIG = {
 //  so editing a size price here also changes the slider prices.
 //  min / max / step control the slider range.
 // ------------------------------------------------------------
-CONFIG.custom = { min: 3000, max: 15000, step: 500 };
+CONFIG.custom = { min: 1000, max: 15000, step: 500, start: 1000 };
 CONFIG.customPrice = function(p){
   var S = CONFIG.sizes.filter(function(s){ return !s.custom }).sort(function(a,b){ return a.pieces - b.pieces });
   var r5 = function(n){ return Math.round(n/5)*5 };
-  if (p <= S[0].pieces) return S[0].price;
+  if (p <= S[0].pieces) { var s0 = S[0], s1 = S[1]; return Math.max(r5(s0.price - (s1.price - s0.price) * (s0.pieces - p) / (s1.pieces - s0.pieces)), 0); }
   for (var i = 1; i < S.length; i++) {
     if (p <= S[i].pieces) { var a = S[i-1], b = S[i]; return r5(a.price + (b.price - a.price) * (p - a.pieces) / (b.pieces - a.pieces)); }
   }
