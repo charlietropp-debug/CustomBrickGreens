@@ -200,7 +200,7 @@
 
 <section id="reviews" style="padding-top:0;display:none">
   <div class="wrap">
-    <div id="revs" style="display:grid;gap:14px"></div>
+    <div id="revs" style="display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;-webkit-overflow-scrolling:touch"></div>
   </div>
 </section>
 
@@ -291,7 +291,7 @@
     var R=CONFIG.reviews||[];if(!R.length)return;
     var esc=function(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")};
     $("#revs").innerHTML=R.map(function(r){
-      return '<figure style="margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px">'+
+      return '<figure style="flex:0 0 min(340px,85%);scroll-snap-align:start;margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px">'+
         '<div aria-label="'+r.stars+' out of 5 stars" style="color:var(--gold);letter-spacing:2px;font-size:20px">'+"\u2605".repeat(r.stars)+"\u2606".repeat(5-r.stars)+'</div>'+
         '<blockquote style="margin:10px 0 12px;font-size:17px;line-height:1.55">'+esc(r.text)+'</blockquote>'+
         '<figcaption style="color:var(--mute);font-size:14px">'+esc(r.who||"Customer")+'</figcaption></figure>'}).join("");
