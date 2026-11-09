@@ -55,3 +55,35 @@ const CONFIG = {
     { pieces: 15000, name: "Showpiece",       note: "Our biggest builds",                  price: 2035, salePrice: null, paymentLink: "" }
   ]
 };
+
+
+// ------------------------------------------------------------
+//  CUSTOM PIECE-COUNT SLIDER
+//  Price is worked out from the size rows above (straight line between them),
+//  so editing a size price here also changes the slider prices.
+//  min / max / step control the slider range.
+// ------------------------------------------------------------
+CONFIG.custom = { min: 3000, max: 15000, step: 500 };
+CONFIG.customPrice = function(p){
+  var S = CONFIG.sizes.filter(function(s){ return !s.custom }).sort(function(a,b){ return a.pieces - b.pieces });
+  var r5 = function(n){ return Math.round(n/5)*5 };
+  if (p <= S[0].pieces) return S[0].price;
+  for (var i = 1; i < S.length; i++) {
+    if (p <= S[i].pieces) { var a = S[i-1], b = S[i]; return r5(a.price + (b.price - a.price) * (p - a.pieces) / (b.pieces - a.pieces)); }
+  }
+  var a2 = S[S.length-2], b2 = S[S.length-1];
+  return r5(b2.price + (b2.price - a2.price) * (p - b2.pieces) / (b2.pieces - a2.pieces));
+};
+(function(){
+  var KEY = "bbgm_custom";
+  var load = function(){ try { return JSON.parse(localStorage.getItem(KEY) || "[]") } catch(e) { return [] } };
+  var make = function(p){ return { pieces: p, name: "Custom model", note: "Custom size", price: CONFIG.customPrice(p), salePrice: null, paymentLink: "", custom: true } };
+  load().forEach(function(p){ CONFIG.sizes.push(make(p)) });
+  CONFIG.addCustom = function(p){
+    for (var i = 0; i < CONFIG.sizes.length; i++) { if (CONFIG.sizes[i].custom && CONFIG.sizes[i].pieces === p) return i; }
+    CONFIG.sizes.push(make(p));
+    var l = load(); l.push(p);
+    try { localStorage.setItem(KEY, JSON.stringify(l)) } catch(e) {}
+    return CONFIG.sizes.length - 1;
+  };
+})();
